@@ -1,0 +1,46 @@
+.container {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+.pickers {
+  display: flex;
+  justify-content: center;
+  margin-top: 40vh;
+  padding: 0 10rem;
+  height: 5rem;
+}
+.range {
+  text-align: center;
+}
+input[type="range"] {
+  width: 25vw;
+  overflow: hidden;
+  -webkit-appearance: none;
+  background-color: transparent;
+  border: 1px solid black;
+}
+
+input[type="range"]::-webkit-slider-runnable-track {
+  height: 10px;
+  -webkit-appearance: none;
+  color: transparent;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  width: 10px;
+  -webkit-appearance: none;
+  height: 10px;
+  cursor: ew-resize;
+  background: black;
+}
+.codeText {
+  margin-top: 16vh;
+  font-size: 1.5rem;
+  font-weight: 500;
+}
+
+.pickerContainer {
+  margin-right: 1rem;
+  text-align: center;
+}
