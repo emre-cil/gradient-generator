@@ -62,7 +62,7 @@ const App = () => {
         <p>{degree}°</p>
         <p className={classes.codeText}>
           background:
-          {`linear-gradient(${degree}deg,${colors.map((i) => i.value)})`}
+          {`linear-gradient(${degree}deg,${colors.map((i) => " " + i.value)})`}
         </p>
       </div>
     </div>

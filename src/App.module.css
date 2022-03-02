@@ -6,9 +6,9 @@
 .pickers {
   display: flex;
   justify-content: center;
+  flex-wrap: wrap;
   margin-top: 40vh;
   padding: 0 10vw;
-  height: 5rem;
 }
 .range {
   text-align: center;
@@ -35,9 +35,10 @@ input[type="range"]::-webkit-slider-thumb {
   background: black;
 }
 .codeText {
-  margin-top: 16vh;
-  font-size: 1.5rem;
+  margin-top: 3rem;
+  font-size: 1rem;
   font-weight: 500;
+  padding: 0 10vw;
 }
 
 .pickerContainer {
