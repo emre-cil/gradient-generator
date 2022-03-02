@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/gradient-generator/static/css/main.ed06dbb8.css",
+    "main.js": "/gradient-generator/static/js/main.897f8475.js",
+    "index.html": "/gradient-generator/index.html",
+    "main.ed06dbb8.css.map": "/gradient-generator/static/css/main.ed06dbb8.css.map",
+    "main.897f8475.js.map": "/gradient-generator/static/js/main.897f8475.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.ed06dbb8.css",
+    "static/js/main.897f8475.js"
+  ]
+}
