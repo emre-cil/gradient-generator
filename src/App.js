@@ -3,7 +3,6 @@ import classes from "./App.module.css";
 import ColorPicker from "./components/ColorPicker";
 import AddColorPicker from "./components/AddColorPicker";
 const App = () => {
-  const [code, setCode] = useState("linear-gradient(180deg, #339410, #118CA2)");
   const [degree, setDegree] = useState(180);
   const [colors, setColors] = useState([
     { id: Math.random(), value: "#339410" },
@@ -15,18 +14,17 @@ const App = () => {
 
   const pickerChangeHandler = (id, colorCode) => {
     colors.map((picker) => {
-      return picker.id === id ? (picker.value = colorCode) : "";
+      if (picker.id === id) {
+        picker.value = colorCode;
+        return setColors((prev) => [...prev]);
+      }
+      return null;
     });
-    changeCode();
   };
 
   const deleteHandler = (id) => {
     if (colors.length > 2)
       setColors(colors.filter((picker) => picker.id !== id));
-  };
-
-  const changeCode = () => {
-    setCode(`linear-gradient(${degree}deg,${colors.map((i) => i.value)})`);
   };
 
   return (
@@ -63,7 +61,7 @@ const App = () => {
         />
         <p>{degree}°</p>
         <p className={classes.codeText}>
-          background:{" "}
+          background:
           {`linear-gradient(${degree}deg,${colors.map((i) => i.value)})`}
         </p>
       </div>
