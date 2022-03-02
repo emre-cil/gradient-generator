@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/gradient-generator/static/css/main.ed06dbb8.css",
-    "main.js": "/gradient-generator/static/js/main.1ef7b1c7.js",
+    "main.css": "/gradient-generator/static/css/main.c4f9873a.css",
+    "main.js": "/gradient-generator/static/js/main.31d50c14.js",
     "index.html": "/gradient-generator/index.html",
-    "main.ed06dbb8.css.map": "/gradient-generator/static/css/main.ed06dbb8.css.map",
-    "main.1ef7b1c7.js.map": "/gradient-generator/static/js/main.1ef7b1c7.js.map"
+    "main.c4f9873a.css.map": "/gradient-generator/static/css/main.c4f9873a.css.map",
+    "main.31d50c14.js.map": "/gradient-generator/static/js/main.31d50c14.js.map"
   },
   "entrypoints": [
-    "static/css/main.ed06dbb8.css",
-    "static/js/main.1ef7b1c7.js"
+    "static/css/main.c4f9873a.css",
+    "static/js/main.31d50c14.js"
   ]
 }
