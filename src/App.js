@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import classes from "./App.module.css";
+import styled from "styled-components";
 import ColorPicker from "./components/ColorPicker";
-import AddColorPicker from "./components/AddColorPicker";
+import ColorPickerAdd from "./components/ColorPickerAdd";
 const App = () => {
   const [degree, setDegree] = useState(180);
   const [colors, setColors] = useState([
@@ -28,45 +28,79 @@ const App = () => {
   };
 
   return (
-    <div
-      className={classes.container}
-      style={{
-        background: `linear-gradient(${degree}deg,${colors.map(
-          (i) => i.value
-        )})`,
-      }}
+    <Wrapper
+      background={`linear-gradient(${degree}deg,${colors.map((i) => i.value)})`}
     >
-      <div className={classes.pickers}>
+      <Pickers>
         {colors.map((picker, i) => (
-          <div key={i} className={classes.pickerContainer}>
-            <ColorPicker
-              key={picker.id}
-              id={picker.id}
-              pickerChangeHandler={pickerChangeHandler}
-              colorValue={picker.value}
-              deleteHandler={deleteHandler}
-            />
-          </div>
+          <ColorPicker
+            key={picker.id}
+            id={picker.id}
+            pickerChangeHandler={pickerChangeHandler}
+            colorValue={picker.value}
+            deleteHandler={deleteHandler}
+          />
         ))}
 
-        <AddColorPicker onClick={pickerAddHandler} />
-      </div>
-      <div className={classes.range}>
-        <input
-          type="range"
-          min="0"
-          max="360"
-          onChange={(e) => setDegree(e.target.value)}
-          value={degree}
-        />
-        <p>{degree}°</p>
-        <p className={classes.codeText}>
-          background:
-          {`linear-gradient(${degree}deg,${colors.map((i) => " " + i.value)})`}
-        </p>
-      </div>
-    </div>
+        <ColorPickerAdd onClick={pickerAddHandler} />
+      </Pickers>
+      <Range
+        type="range"
+        min="0"
+        max="360"
+        onChange={(e) => setDegree(e.target.value)}
+        value={degree}
+      />
+      <p>{degree}°</p>
+      <OutputText>
+        background:
+        {`linear-gradient(${degree}deg,${colors.map((i) => " " + i.value)})`}
+      </OutputText>
+    </Wrapper>
   );
 };
 
 export default App;
+
+const Wrapper = styled.div`
+  text-align: center;
+  width: 100%;
+  height: 100vh;
+  overflow-x: hidden;
+  background: ${(props) => (props.background ? props.background : "white")};
+`;
+const Pickers = styled.div`
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 40vh;
+  padding: 0 10vw;
+`;
+
+const Range = styled.input`
+  margin-top: 1rem;
+  width: 25vw;
+  overflow: hidden;
+  -webkit-appearance: none;
+  background-color: transparent;
+  border: 1px solid black;
+  ::-webkit-slider-thumb {
+    width: 10px;
+    -webkit-appearance: none;
+    height: 10px;
+    cursor: ew-resize;
+    background: black;
+  }
+  ::-webkit-slider-runnable-track {
+    height: 0.6rem;
+    -webkit-appearance: none;
+    color: transparent;
+  }
+`;
+
+const OutputText = styled.p`
+  margin-top: 3rem;
+  font-size: 1rem;
+  font-weight: 500;
+  padding: 0 10vw;
+`;
