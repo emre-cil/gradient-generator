@@ -1,9 +1,13 @@
-# website
+# Demo Website
 
---> _[Gradient-generator](https://emre-cil.github.io/gradient-generator/)_.
-<img src="https://github.com/emre-cil/gradient-generator/blob/master/gradient-generator.png" alt="alt text" />
+--> _[Gradient-generator](https://emre-cil.github.io/gradient-generator/)_
 
 <hr/>
+
+## Example
+
+<img src="https://github.com/emre-cil/gradient-generator/blob/master/gradient-generator.png" alt="alt text" />
+
 <hr/>
 
 # Getting Started with Create React App
