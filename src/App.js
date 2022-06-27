@@ -1,15 +1,16 @@
-import React, { useState } from "react";
-import styled from "styled-components";
-import ColorPicker from "./components/ColorPicker";
-import ColorPickerAdd from "./components/ColorPickerAdd";
+import React, { useState } from 'react';
+import styled from 'styled-components';
+import ColorPicker from './components/ColorPicker';
+import ColorPickerAdd from './components/ColorPickerAdd';
 const App = () => {
-  const [degree, setDegree] = useState(180);
+  const [type, setType] = useState('linear');
+  const [degree, setDegree] = useState(80);
   const [colors, setColors] = useState([
-    { id: Math.random(), value: "#339410" },
-    { id: Math.random(), value: "#118CA2" },
+    { id: Math.random(), value: '#fffbd5' },
+    { id: Math.random(), value: '#b20a2c' },
   ]);
   const pickerAddHandler = () => {
-    setColors((prev) => [...prev, { id: Math.random(), value: "#FFFFFF" }]);
+    setColors((prev) => [...prev, { id: Math.random(), value: '#FFFFFF' }]);
   };
 
   const pickerChangeHandler = (id, colorCode) => {
@@ -29,7 +30,9 @@ const App = () => {
 
   return (
     <Wrapper
-      background={`linear-gradient(${degree}deg,${colors.map((i) => i.value)})`}
+      background={`${type}-gradient(${degree}deg,${colors.map(
+        (i) => i.value
+      )})`}
     >
       <Pickers>
         {colors.map((picker, i) => (
@@ -52,9 +55,21 @@ const App = () => {
         value={degree}
       />
       <p>{degree}°</p>
+      <TypeWrapper>
+        {['linear', 'radial'].map((i) => (
+          <div
+            onClick={() => {
+              setType(i);
+            }}
+          >
+            {i}
+          </div>
+        ))}
+      </TypeWrapper>
       <OutputText>
-        background:
-        {`linear-gradient(${degree}deg,${colors.map((i) => " " + i.value)})`}
+        {`background: ${type}-gradient(${degree}deg,${colors.map(
+          (i) => ' ' + i.value
+        )})`}
       </OutputText>
     </Wrapper>
   );
@@ -67,7 +82,7 @@ const Wrapper = styled.div`
   width: 100%;
   height: 100vh;
   overflow-x: hidden;
-  background: ${(props) => (props.background ? props.background : "white")};
+  background: ${(props) => (props.background ? props.background : 'white')};
 `;
 const Pickers = styled.div`
   display: flex;
@@ -99,8 +114,30 @@ const Range = styled.input`
 `;
 
 const OutputText = styled.p`
-  margin-top: 3rem;
+  margin-top: 1rem;
   font-size: 1rem;
   font-weight: 500;
   padding: 0 10vw;
+`;
+
+const TypeWrapper = styled.div`
+  margin-top: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  div + div {
+    margin-left: 1rem;
+  }
+  div {
+    border: 1px solid black;
+    border-radius: 10px;
+    padding: 0.35rem 0.6rem;
+    transition: all 0.3s ease-in-out;
+    cursor: pointer;
+    &:hover {
+      color: white;
+      border-color: white;
+      background: linear-gradient(to right, #fc5c7d, #6a82fb);
+    }
+  }
 `;
