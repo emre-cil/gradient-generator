@@ -12,7 +12,7 @@ const ColorPicker = (props) => {
     props.deleteHandler(props.id);
   };
   return (
-    <Wrapper>
+    <>
       <ColorInputWrapper>
         <ColorInput
           type="color"
@@ -21,15 +21,12 @@ const ColorPicker = (props) => {
         ></ColorInput>
       </ColorInputWrapper>
       <DeleteDiv onClick={onDelete}>x</DeleteDiv>
-    </Wrapper>
+    </>
   );
 };
 
 export default ColorPicker;
 
-const Wrapper = styled.div`
-  margin-right: 1rem;
-`;
 const ColorInputWrapper = styled.div`
   width: 3rem;
   height: 3rem;

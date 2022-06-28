@@ -3,14 +3,15 @@ import styled from 'styled-components';
 import { IoIosAdd } from 'react-icons/io';
 
 const AddColorPicker = ({ onClick }) => (
-  <Wrapper>
-    <IoIosAdd onClick={onClick} />
+  <Wrapper onClick={onClick}>
+    <IoIosAdd />
   </Wrapper>
 );
 
 export default AddColorPicker;
 
 const Wrapper = styled.div`
+  margin-top: 1.25rem;
   height: 3rem;
   width: 3rem;
   display: flex;

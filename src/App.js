@@ -4,13 +4,33 @@ import ColorPicker from './components/ColorPicker';
 import ColorPickerAdd from './components/ColorPickerAdd';
 const App = () => {
   const [type, setType] = useState('linear');
-  const [degree, setDegree] = useState(80);
+  const [degree, setDegree] = useState(90);
   const [colors, setColors] = useState([
-    { id: Math.random(), value: '#fffbd5' },
-    { id: Math.random(), value: '#b20a2c' },
+    {
+      id: Math.random(),
+      value: '#fffbd5',
+      percentage: 0,
+    },
+    {
+      id: Math.random(),
+      value: '#b20a2c',
+      percentage: 100,
+    },
   ]);
   const pickerAddHandler = () => {
-    setColors((prev) => [...prev, { id: Math.random(), value: '#FFFFFF' }]);
+    colors.map((picker, idx) => {
+      picker.percentage = Math.floor((100 / colors.length) * idx);
+      setColors((prev) => [...prev]);
+    });
+
+    setColors((prev) => [
+      ...prev,
+      {
+        id: Math.random(),
+        value: '#FFFFFF',
+        percentage: 100,
+      },
+    ]);
   };
 
   const pickerChangeHandler = (id, colorCode) => {
@@ -22,6 +42,17 @@ const App = () => {
       return null;
     });
   };
+  const percentageInputOnChange = (e, id) => {
+    if (e.target.value < 101 && e.target.value > -1 && e.target.value !== '') {
+      colors.map((picker) => {
+        if (picker.id === id) {
+          picker.percentage = e.target.value;
+          return setColors((prev) => [...prev]);
+        }
+        return null;
+      });
+    }
+  };
 
   const deleteHandler = (id) => {
     if (colors.length > 2)
@@ -31,18 +62,25 @@ const App = () => {
   return (
     <Wrapper
       background={`${type}-gradient(${degree}deg,${colors.map(
-        (i) => i.value
+        (item) => ' ' + item.value + ' ' + item.percentage + '%'
       )})`}
     >
       <Pickers>
         {colors.map((picker, i) => (
-          <ColorPicker
-            key={picker.id}
-            id={picker.id}
-            pickerChangeHandler={pickerChangeHandler}
-            colorValue={picker.value}
-            deleteHandler={deleteHandler}
-          />
+          <PickerContainer key={i}>
+            <input
+              onChange={(e) => percentageInputOnChange(e, picker.id)}
+              type="number"
+              min="0"
+              max="100"
+            />
+            <ColorPicker
+              id={picker.id}
+              pickerChangeHandler={pickerChangeHandler}
+              colorValue={picker.value}
+              deleteHandler={deleteHandler}
+            />
+          </PickerContainer>
         ))}
 
         <ColorPickerAdd onClick={pickerAddHandler} />
@@ -58,6 +96,11 @@ const App = () => {
       <TypeWrapper>
         {['linear', 'radial'].map((i) => (
           <div
+            key={i}
+            style={{
+              background:
+                i === type ? 'linear-gradient(to right, #fc5c7d, #6a82fb)' : [],
+            }}
             onClick={() => {
               setType(i);
             }}
@@ -68,7 +111,7 @@ const App = () => {
       </TypeWrapper>
       <OutputText>
         {`background: ${type}-gradient(${degree}deg,${colors.map(
-          (i) => ' ' + i.value
+          (item) => ' ' + item.value + ' ' + item.percentage + '%'
         )})`}
       </OutputText>
     </Wrapper>
@@ -139,5 +182,21 @@ const TypeWrapper = styled.div`
       border-color: white;
       background: linear-gradient(to right, #fc5c7d, #6a82fb);
     }
+  }
+`;
+const PickerContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-right: 1rem;
+  input[type='number'] {
+    width: 2.5rem;
+    height: 1rem;
+    background-color: transparent;
+    outline: none;
+    border: none;
+    border-bottom: 1px solid black;
+    margin-bottom: 0.25rem;
   }
 `;
