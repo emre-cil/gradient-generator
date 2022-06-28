@@ -98,27 +98,38 @@ const App = () => {
           <p>{degree}°</p>
         </>
       )}
-      <TypeWrapper>
-        {['linear', 'radial'].map((i) => (
-          <div
-            key={i}
-            style={{
-              background:
-                i === type ? 'linear-gradient(to right, #fc5c7d, #6a82fb)' : [],
-            }}
-            onClick={() => {
-              setType(i);
-            }}
-          >
-            {i}
-          </div>
-        ))}
-      </TypeWrapper>
-      <OutputText>
-        {`background: ${type}-gradient(${degree}deg,${colors.map(
-          (item) => ' ' + item.value + ' ' + item.percentage + '%'
-        )})`}
-      </OutputText>
+      <OutputWrapper>
+        <TypeWrapper>
+          {['linear', 'radial'].map((i) => (
+            <TypeButton
+              style={i === type ? { color: 'lightgray' } : {}}
+              key={i}
+              onClick={() => {
+                setType(i);
+              }}
+            >
+              {i}
+            </TypeButton>
+          ))}
+        </TypeWrapper>
+        <p
+          onClick={() =>
+            navigator.clipboard.writeText(
+              `background: ${type}-gradient(${
+                type === 'linear' ? degree + 'deg' : 'circle'
+              },${colors.map(
+                (item) => ' ' + item.value + ' ' + item.percentage + '%'
+              )});`
+            )
+          }
+        >
+          {`background: ${type}-gradient(${
+            type === 'linear' ? degree + 'deg' : 'circle'
+          },${colors.map(
+            (item) => ' ' + item.value + ' ' + item.percentage + '%'
+          )});`}
+        </p>
+      </OutputWrapper>
     </Wrapper>
   );
 };
@@ -142,7 +153,10 @@ const Pickers = styled.div`
 
 const Range = styled.input`
   margin-top: 1rem;
-  width: 25vw;
+  width: 20rem;
+  @media screen and (max-width: 768px) {
+    width: calc(60vw + 4.1rem);
+  }
   overflow: hidden;
   -webkit-appearance: none;
   background-color: transparent;
@@ -160,32 +174,46 @@ const Range = styled.input`
     color: transparent;
   }
 `;
-
-const OutputText = styled.p`
-  margin-top: 1rem;
-  font-size: 1rem;
-  font-weight: 500;
-  padding: 0 10vw;
+const TypeWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 0.5rem 0 0 0.5rem;
+  color: white;
+  border-right: 1px solid white;
+  user-select: none;
 `;
 
-const TypeWrapper = styled.div`
-  margin-top: 1rem;
-  display: flex;
+const TypeButton = styled.div`
+  padding: 0.4rem 0.8rem;
+  height: 100%;
+  display: inline-flex;
   align-items: center;
-  justify-content: center;
-  div + div {
-    margin-left: 1rem;
+  transition: all 0.3s ease-in-out;
+  cursor: pointer;
+  & + & {
+    border-top: 1px solid white;
   }
-  div {
-    border: 1px solid black;
-    border-radius: 10px;
-    padding: 0.35rem 0.6rem;
-    transition: all 0.3s ease-in-out;
+`;
+
+const OutputWrapper = styled.div`
+  margin: 1rem 0 2rem;
+  display: flex;
+  justify-content: center;
+  p {
+    display: inline-flex;
+    align-items: center;
+    max-width: 50vw;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 0 0.5rem 0.5rem 0;
+    font-size: 1rem;
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+    color: lightgray;
     cursor: pointer;
-    &:hover {
-      color: white;
-      border-color: white;
-      background: linear-gradient(to right, #fc5c7d, #6a82fb);
+    @media screen and (max-width: 768px) {
+      max-width: 60vw;
     }
   }
 `;
