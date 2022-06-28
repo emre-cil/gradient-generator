@@ -27,7 +27,7 @@ const App = () => {
       ...prev,
       {
         id: Math.random(),
-        value: '#FFFFFF',
+        value: '#ffffff',
         percentage: 100,
       },
     ]);
@@ -61,7 +61,9 @@ const App = () => {
 
   return (
     <Wrapper
-      background={`${type}-gradient(${degree}deg,${colors.map(
+      background={`${type}-gradient(${
+        type === 'linear' ? degree + 'deg' : 'circle'
+      },${colors.map(
         (item) => ' ' + item.value + ' ' + item.percentage + '%'
       )})`}
     >
@@ -75,9 +77,8 @@ const App = () => {
               max="100"
             />
             <ColorPicker
-              id={picker.id}
+              picker={picker}
               pickerChangeHandler={pickerChangeHandler}
-              colorValue={picker.value}
               deleteHandler={deleteHandler}
             />
           </PickerContainer>
@@ -85,14 +86,18 @@ const App = () => {
 
         <ColorPickerAdd onClick={pickerAddHandler} />
       </Pickers>
-      <Range
-        type="range"
-        min="0"
-        max="360"
-        onChange={(e) => setDegree(e.target.value)}
-        value={degree}
-      />
-      <p>{degree}°</p>
+      {type === 'linear' && (
+        <>
+          <Range
+            type="range"
+            min="0"
+            max="360"
+            onChange={(e) => setDegree(e.target.value)}
+            value={degree}
+          />
+          <p>{degree}°</p>
+        </>
+      )}
       <TypeWrapper>
         {['linear', 'radial'].map((i) => (
           <div

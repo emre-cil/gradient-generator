@@ -1,22 +1,21 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
-const ColorPicker = (props) => {
-  const [color, setColor] = useState(props.colorValue);
 
+const ColorPicker = (props) => {
   const onChangeHandler = (e) => {
-    setColor(e.target.value);
-    props.pickerChangeHandler(props.id, e.target.value);
+    props.pickerChangeHandler(props.picker.id, e.target.value);
   };
 
   const onDelete = () => {
-    props.deleteHandler(props.id);
+    props.deleteHandler(props.picker.id);
   };
+
   return (
     <>
       <ColorInputWrapper>
         <ColorInput
           type="color"
-          value={color}
+          value={props.picker.value}
           onChange={onChangeHandler}
         ></ColorInput>
       </ColorInputWrapper>
