@@ -17,12 +17,13 @@ const Wrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 1px solid black;
+  border: 1px solid white;
   border-radius: 50%;
   font-size: 1.5rem;
   user-select: none;
   svg {
     user-select: none;
+    color: white;
   }
   cursor: pointer;
 `;

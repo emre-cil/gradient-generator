@@ -30,7 +30,7 @@ const ColorInputWrapper = styled.div`
   width: 3rem;
   height: 3rem;
   border: none;
-  border: 1px solid black;
+  border: 1px solid white;
   border-radius: 50%;
   overflow: hidden;
 `;
@@ -60,6 +60,6 @@ const DeleteDiv = styled.div`
 
   &:hover,
   ${ColorInputWrapper}:hover ~ & {
-    color: black;
+    color: white;
   }
 `;

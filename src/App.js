@@ -70,13 +70,14 @@ const App = () => {
     }
   };
   return (
-    <Wrapper
-      background={`${type}-gradient(${
-        type === 'linear' ? degree + 'deg' : 'circle'
-      },${colors.map(
-        (item) => ' ' + item.value + ' ' + item.percentage + '%'
-      )})`}
-    >
+    <Wrapper>
+      <ThemeWrapper
+        background={`${type}-gradient(${
+          type === 'linear' ? degree + 'deg' : 'circle'
+        },${colors.map(
+          (item) => ' ' + item.value + ' ' + item.percentage + '%'
+        )})`}
+      />
       <Pickers>
         {colors.map((picker, i) => (
           <PickerContainer key={i}>
@@ -146,21 +147,36 @@ const App = () => {
 
 export default App;
 
-const Wrapper = styled.div.attrs((props) => ({
-  style: {
-    background: props.background,
-  },
-}))`
+const Wrapper = styled.div`
   text-align: center;
   width: 100%;
   height: 100vh;
   overflow-x: hidden;
+  background-color: hsl(210deg, 30%, 10%);
+  p {
+    color: white;
+  }
 `;
+const ThemeWrapper = styled.div.attrs((props) => ({
+  style: {
+    background: props.background,
+  },
+}))`
+  box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px,
+    rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px,
+    rgba(0, 0, 0, 0.07) 0px 16px 32px, rgba(0, 0, 0, 0.07) 0px 32px 64px;
+  margin: 5rem auto;
+  border: 2px solid white;
+  border-radius: 2rem;
+  width: 50vw;
+  height: 10rem;
+`;
+
 const Pickers = styled.div`
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  margin-top: 40vh;
+  margin-top: 10vh;
   padding: 0 10vw;
 `;
 
@@ -173,13 +189,13 @@ const Range = styled.input`
   overflow: hidden;
   -webkit-appearance: none;
   background-color: transparent;
-  border: 1px solid black;
+  border: 1px solid white;
   ::-webkit-slider-thumb {
     width: 10px;
     -webkit-appearance: none;
     height: 10px;
     cursor: ew-resize;
-    background: black;
+    background: white;
   }
   ::-webkit-slider-runnable-track {
     height: 0.6rem;
@@ -242,7 +258,7 @@ const PickerContainer = styled.div`
     background-color: transparent;
     outline: none;
     border: none;
-    border-bottom: 1px solid black;
+    border-bottom: 1px solid white;
     margin-bottom: 0.25rem;
   }
 `;
