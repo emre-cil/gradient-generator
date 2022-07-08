@@ -55,10 +55,20 @@ const App = () => {
   };
 
   const deleteHandler = (id) => {
-    if (colors.length > 2)
-      setColors(colors.filter((picker) => picker.id !== id));
+    if (colors.length > 2) {
+      setColors((prev) => prev.filter((picker) => picker.id !== id));
+      colors.map((picker, idx) => {
+        if (picker.id !== id) {
+          percentageInputOnChange(
+            {
+              target: { value: Math.floor((100 / (colors.length - 2)) * idx) },
+            },
+            picker.id
+          );
+        }
+      });
+    }
   };
-
   return (
     <Wrapper
       background={`${type}-gradient(${
