@@ -146,12 +146,15 @@ const App = () => {
 
 export default App;
 
-const Wrapper = styled.div`
+const Wrapper = styled.div.attrs((props) => ({
+  style: {
+    background: props.background,
+  },
+}))`
   text-align: center;
   width: 100%;
   height: 100vh;
   overflow-x: hidden;
-  background: ${(props) => (props.background ? props.background : 'white')};
 `;
 const Pickers = styled.div`
   display: flex;
