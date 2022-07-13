@@ -12,7 +12,7 @@ const ColorPicker = (props) => {
 
   return (
     <>
-      <ColorInputWrapper>
+      <ColorInputWrapper color={props.picker.value}>
         <ColorInput
           type="color"
           value={props.picker.value}
@@ -33,6 +33,9 @@ const ColorInputWrapper = styled.div`
   border: 1px solid white;
   border-radius: 50%;
   overflow: hidden;
+  padding: 0.001rem;
+  border-radius: 50%;
+  background-color: ${(props) => props.color};
 `;
 
 const ColorInput = styled.input`

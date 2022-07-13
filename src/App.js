@@ -168,8 +168,14 @@ const ThemeWrapper = styled.div.attrs((props) => ({
   margin: 5rem auto;
   border: 2px solid white;
   border-radius: 2rem;
-  width: 50vw;
+  width: 40vw;
   height: 10rem;
+  @media (max-width: 768px) {
+    width: calc(60vw + 4.1rem);
+  }
+  @media (max-width: 1200px) {
+    width: 60vw;
+  }
 `;
 
 const Pickers = styled.div`
@@ -183,7 +189,7 @@ const Pickers = styled.div`
 const Range = styled.input`
   margin-top: 1rem;
   width: 20rem;
-  @media screen and (max-width: 768px) {
+  @media (max-width: 768px) {
     width: calc(60vw + 4.1rem);
   }
   overflow: hidden;
