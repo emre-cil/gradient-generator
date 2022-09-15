@@ -1,6 +1,5 @@
-import React from 'react';
-import styled from 'styled-components';
 import { IoIosAdd } from 'react-icons/io';
+import styled from 'styled-components';
 
 const AddColorPicker = ({ onClick }) => (
   <Wrapper onClick={onClick}>
@@ -8,22 +7,22 @@ const AddColorPicker = ({ onClick }) => (
   </Wrapper>
 );
 
-export default AddColorPicker;
-
 const Wrapper = styled.div`
-  margin-top: 1.25rem;
-  height: 3rem;
   width: 3rem;
+  height: 3rem;
   display: flex;
-  justify-content: center;
-  align-items: center;
-  border: 1px solid white;
-  border-radius: 50%;
-  font-size: 1.5rem;
-  user-select: none;
-  svg {
-    user-select: none;
-    color: white;
-  }
   cursor: pointer;
+  user-select: none;
+  font-size: 1.5rem;
+  border-radius: 50%;
+  align-items: center;
+  margin-top: 1.25rem;
+  justify-content: center;
+  border: 1px solid white;
+  svg {
+    color: white;
+    user-select: none;
+  }
 `;
+
+export default AddColorPicker;
