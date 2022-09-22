@@ -52,6 +52,7 @@ const App = () => {
       return null;
     });
   };
+
   const percentageInputOnChange = (e, id) => {
     if (e.target.value < 101 && e.target.value > -1 && e.target.value !== '') {
       colors.map((picker) => {
@@ -73,33 +74,25 @@ const App = () => {
             {
               target: { value: Math.floor((100 / (colors.length - 2)) * idx) },
             },
-            picker.id
+            picker.id,
           );
         }
       });
     }
   };
+
   return (
     <Wrapper>
       <ThemeWrapper
         background={`${type}-gradient(${type === 'linear' ? degree + 'deg' : 'circle'},${colors.map(
-          (item) => ' ' + item.value + ' ' + item.percentage + '%'
+          (item) => ' ' + item.value + ' ' + item.percentage + '%',
         )})`}
       />
       <Pickers>
         {colors.map((picker, i) => (
           <PickerContainer key={i}>
-            <input
-              onChange={(e) => percentageInputOnChange(e, picker.id)}
-              type="number"
-              min="0"
-              max="100"
-            />
-            <ColorPicker
-              picker={picker}
-              pickerChangeHandler={pickerChangeHandler}
-              deleteHandler={deleteHandler}
-            />
+            <input onChange={(e) => percentageInputOnChange(e, picker.id)} type="number" min="0" max="100" />
+            <ColorPicker picker={picker} pickerChangeHandler={pickerChangeHandler} deleteHandler={deleteHandler} />
           </PickerContainer>
         ))}
 
@@ -107,13 +100,7 @@ const App = () => {
       </Pickers>
       {type === 'linear' && (
         <>
-          <Range
-            type="range"
-            min="0"
-            max="360"
-            onChange={(e) => setDegree(e.target.value)}
-            value={degree}
-          />
+          <Range type="range" min="0" max="360" onChange={(e) => setDegree(e.target.value)} value={degree} />
           <p>{degree}°</p>
         </>
       )}
@@ -134,15 +121,15 @@ const App = () => {
         <p
           onClick={() =>
             navigator.clipboard.writeText(
-              `background: ${type}-gradient(${
-                type === 'linear' ? degree + 'deg' : 'circle'
-              },${colors.map((item) => ' ' + item.value + ' ' + item.percentage + '%')});`
+              `background: ${type}-gradient(${type === 'linear' ? degree + 'deg' : 'circle'},${colors.map(
+                (item) => ' ' + item.value + ' ' + item.percentage + '%',
+              )});`,
             )
           }
         >
-          {`background: ${type}-gradient(${
-            type === 'linear' ? degree + 'deg' : 'circle'
-          },${colors.map((item) => ' ' + item.value + ' ' + item.percentage + '%')});`}
+          {`background: ${type}-gradient(${type === 'linear' ? degree + 'deg' : 'circle'},${colors.map(
+            (item) => ' ' + item.value + ' ' + item.percentage + '%',
+          )});`}
         </p>
       </OutputWrapper>
     </Wrapper>
