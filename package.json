@@ -2,7 +2,7 @@
   "name": "gradient-generator",
   "private": true,
   "homepage": "https://emre-cil.github.io/gradient-generator",
-  "version": "0.2.0",
+  "version": "0.2.2",
   "scripts": {
     "dev": "vite --open",
     "build": "vite build",
